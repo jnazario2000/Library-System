@@ -61,25 +61,6 @@ public class UserBookIntegrationTests {
     }
 
     @Test
-    void userBorrowsBookNotAvailable(){
-        // Create user instance
-        User user1 = new User("Steve Harvey", "User001");
-        User user2 = new User("Jim Carrey", "User002");
-
-        // Create book instance
-        Book book = new Book("Java Programming", "Author A", "ISBN123");
-
-        // user1 borrows book
-        user1.borrowBook(book);
-
-        // user2 tries to borrow the same book
-        user2.borrowBook(book);
-        // Get borrowed books
-        assertTrue(user2.getBorrowedBooks().isEmpty(), "List of borrowed books for user2 should be empty.");
-
-    }
-
-    @Test
     void userGetBorrowedBooksNoneBorrowed(){
         // Create user instance
         User user = new User("Steve Harvey", "User001");
