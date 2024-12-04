@@ -60,6 +60,36 @@ public class UserBookIntegrationTests {
         assertFalse(book1.isAvailable()&&book2.isAvailable(), "Books that have been borrowed should be unavailable.");
     }
 
+    @Test 
+    void userReturnsBookNotBorrowed(){
+        // Create user instance
+        User user = new User("Steve Harvey", "User001");
+
+        // Create book instance
+        Book book = new Book("Java Programming", "Author A", "ISBN123");
+
+        assertThrows(IllegalStateException.class, () -> user.returnBook(book), 
+        		"Attempting to return an unborrowed book should throw an exception.");
+    }
+
+    @Test
+    void userBorrowsBookNotAvailable(){
+        // Create user instance
+        User user1 = new User("Steve Harvey", "User001");
+        User user2 = new User("Jim Carrey", "User002");
+
+        // Create book instance
+        Book book = new Book("Java Programming", "Author A", "ISBN123");
+
+        // user1 borrows book
+        user1.borrowBook(book);
+
+        // Get borrowed books
+        assertThrows(IllegalStateException.class, () -> user2.borrowBook(book),
+                "Attempting to borrow an unavailable book should throw an exception.");
+
+    }
+
     @Test
     void userGetBorrowedBooksNoneBorrowed(){
         // Create user instance
